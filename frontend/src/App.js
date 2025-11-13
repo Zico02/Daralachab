@@ -107,7 +107,7 @@ function App() {
         <div className="nav-container">
           <div className="nav-logo-section">
             <img 
-              src="https://customer-assets.emergentagent.com/job_05156f9f-b9d7-4ff1-ae34-57f5d0fe8e69/artifacts/ztp7uho9_image.png" 
+              src="https://customer-assets.emergentagent.com/job_achab-bistro/artifacts/r0zz75ce_ChatGPT%20Image%2013%20nov.%202025%2C%2001_23_22.png" 
               alt="Restaurant Dar Al Achab Logo" 
               className="nav-logo"
               data-testid="restaurant-logo"
