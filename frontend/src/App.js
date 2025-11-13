@@ -248,130 +248,80 @@ function App() {
           {/* Signature Set Menu */}
           <div className="signature-menu" data-testid="signature-menu">
             <div className="signature-badge">Menu Signature</div>
-            <h3 className="menu-category-title">Menu Poisson Complet</h3>
+            <h3 className="menu-category-title">Menu Signature (Fixed Menu)</h3>
             <p className="signature-description">
-              Une expérience gastronomique complète : soupe, entrées variées, plat de poisson principal (grillé ou tajine), dessert maison et jus frais.
+              Une expérience culinaire authentique : une soupe généreuse, des entrées maison inspirées de la tradition marocaine, un plat principal de poisson (grillé et en tajine) suivi d'un dessert artisanal et de jus frais naturels.
             </p>
-            <div className="signature-price">200 MAD par personne</div>
+            <div className="signature-price">Menu complet pour seulement 200 MAD/personne</div>
+            
+            <div className="menu-details">
+              <div className="menu-course">
+                <h4>1. Amuse-bouches</h4>
+                <p>Olives, fruits secs grillés, pain marocain & harissa</p>
+              </div>
+              <div className="menu-course">
+                <h4>2. Soupe de poisson</h4>
+                <p>Orge, maïs, millet, lotte/requin</p>
+              </div>
+              <div className="menu-course">
+                <h4>3. Tajine de fruits de mer & épinards</h4>
+                <p>Calamar, petits morceaux de poisson, etc.</p>
+              </div>
+              <div className="menu-course">
+                <h4>4. Poisson grillé entier</h4>
+                <p>Choix possible : bar, dorade, saint-pierre au feu de bois, farci aux herbes</p>
+              </div>
+              <div className="menu-course">
+                <h4>5. Jus de fruits maison à volonté</h4>
+                <p>Grape, figue, caroube</p>
+              </div>
+              <div className="menu-course">
+                <h4>6. Dessert</h4>
+                <p>Melon jaune + mélange fruits secs/grillés, orge, miel</p>
+              </div>
+            </div>
           </div>
 
           <div className="menu-grid">
-            {/* Entrées */}
+            {/* À la carte */}
             <div className="menu-category" data-testid="menu-starters">
               <h3 className="menu-category-title">
                 <span className="title-arabic">المقبلات</span>
-                Entrées / Starters
+                Entrées & Amuse-bouches
               </h3>
-              <div className="menu-items">
-                <div className="menu-item">
-                  <div className="menu-item-header">
-                    <h4>Salade Marocaine Mixte</h4>
-                  </div>
-                  <p>Tomates, concombres, oignons, et herbes fraîches</p>
-                </div>
-                <div className="menu-item">
-                  <div className="menu-item-header">
-                    <h4>Salade de Crevettes</h4>
-                  </div>
-                  <p>Crevettes fraîches avec avocat et citron</p>
-                </div>
-                <div className="menu-item">
-                  <div className="menu-item-header">
-                    <h4>Harira aux Fruits de Mer</h4>
-                  </div>
-                  <p>Soupe traditionnelle enrichie de fruits de mer</p>
-                </div>
-              </div>
+              <p className="category-note">Disponibles à la carte</p>
             </div>
 
-            {/* Plats Principaux */}
             <div className="menu-category" data-testid="menu-main-dishes">
               <h3 className="menu-category-title">
                 <span className="title-arabic">الأسماك</span>
-                Plats Principaux / Main Dishes
+                Soupes & Tajines variés
               </h3>
-              <div className="menu-items">
-                <div className="menu-item">
-                  <div className="menu-item-header">
-                    <h4>Poisson Grillé sur Charbon de Bois</h4>
-                  </div>
-                  <p>Poisson frais du jour grillé nature aux épices marocaines</p>
-                </div>
-                <div className="menu-item">
-                  <div className="menu-item-header">
-                    <h4>Tajine d'Épinards avec Lotte, Calmars et Requin</h4>
-                  </div>
-                  <p>Mélange de fruits de mer mijoté avec épinards frais</p>
-                </div>
-                <div className="menu-item">
-                  <div className="menu-item-header">
-                    <h4>Brochettes de Requin aux Épices Malgaches</h4>
-                  </div>
-                  <p>Brochettes marinées aux épices exotiques</p>
-                </div>
-                <div className="menu-item">
-                  <div className="menu-item-header">
-                    <h4>Friture de Poisson Mixte</h4>
-                  </div>
-                  <p>Assortiment de petits poissons frits croustillants</p>
-                </div>
-              </div>
+              <p className="category-note">Disponibles à la carte</p>
             </div>
 
-            {/* Desserts */}
-            <div className="menu-category" data-testid="menu-desserts">
+            <div className="menu-category" data-testid="menu-seafood">
               <h3 className="menu-category-title">
-                <span className="title-arabic">الحلويات</span>
-                Desserts
+                <span className="title-arabic">المشاوي</span>
+                Poissons grillés ou plats de fruits de mer
               </h3>
-              <div className="menu-items">
-                <div className="menu-item">
-                  <div className="menu-item-header">
-                    <h4>Fruits de Saison</h4>
-                  </div>
-                  <p>Sélection de fruits frais selon la saison</p>
-                </div>
-                <div className="menu-item">
-                  <div className="menu-item-header">
-                    <h4>Orge au Miel Naturel</h4>
-                  </div>
-                  <p>Dessert traditionnel marocain au miel</p>
-                </div>
-                <div className="menu-item">
-                  <div className="menu-item-header">
-                    <h4>Pâtisserie Marocaine</h4>
-                  </div>
-                  <p>Assortiment de pâtisseries traditionnelles</p>
-                </div>
-              </div>
+              <p className="category-note">Disponibles à la carte</p>
             </div>
 
-            {/* Boissons */}
             <div className="menu-category" data-testid="menu-drinks">
               <h3 className="menu-category-title">
                 <span className="title-arabic">المشروبات</span>
-                Boissons & Jus Frais / Drinks
+                Boissons & Jus frais maison
               </h3>
-              <div className="menu-items">
-                <div className="menu-item">
-                  <div className="menu-item-header">
-                    <h4>Jus Maison aux Fruits Mûrs et Figues</h4>
-                  </div>
-                  <p>Jus frais préparé avec fruits secs</p>
-                </div>
-                <div className="menu-item">
-                  <div className="menu-item-header">
-                    <h4>Jus d'Orange Frais</h4>
-                  </div>
-                  <p>Pressé à la commande</p>
-                </div>
-                <div className="menu-item">
-                  <div className="menu-item-header">
-                    <h4>Thé à la Menthe</h4>
-                  </div>
-                  <p>Thé marocain traditionnel</p>
-                </div>
-              </div>
+              <p className="category-note">Disponibles à la carte</p>
+            </div>
+
+            <div className="menu-category" data-testid="menu-desserts">
+              <h3 className="menu-category-title">
+                <span className="title-arabic">الحلويات</span>
+                Desserts légers & fruits de saison
+              </h3>
+              <p className="category-note">Disponibles à la carte</p>
             </div>
           </div>
         </div>
