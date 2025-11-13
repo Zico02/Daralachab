@@ -55,12 +55,10 @@ function App() {
   };
 
   const galleryImages = [
-    { url: 'https://customer-assets.emergentagent.com/job_05156f9f-b9d7-4ff1-ae34-57f5d0fe8e69/artifacts/uu4og6xu_image.png', caption: 'Restaurant Entrance' },
-    { url: 'https://customer-assets.emergentagent.com/job_05156f9f-b9d7-4ff1-ae34-57f5d0fe8e69/artifacts/65i30rip_image.png', caption: 'Facade & Signage' },
-    { url: 'https://customer-assets.emergentagent.com/job_05156f9f-b9d7-4ff1-ae34-57f5d0fe8e69/artifacts/407o0nun_image.png', caption: 'Dining Room Atmosphere' },
-    { url: 'https://customer-assets.emergentagent.com/job_05156f9f-b9d7-4ff1-ae34-57f5d0fe8e69/artifacts/lszi5bj2_image.png', caption: 'Menu Board' },
-    { url: 'https://images.unsplash.com/photo-1542627501-cadbb5b43ad7?crop=entropy&cs=srgb&fm=jpg&q=85', caption: 'Signature Fish Dish' },
-    { url: 'https://images.pexels.com/photos/30946354/pexels-photo-30946354.jpeg', caption: 'Fresh Seafood Selection' }
+    { url: 'https://customer-assets.emergentagent.com/job_achab-bistro/artifacts/063lb70q_image.png', caption: 'Restaurant Entrance' },
+    { url: 'https://customer-assets.emergentagent.com/job_achab-bistro/artifacts/iywdtq4m_image.png', caption: 'Fresh Seafood' },
+    { url: 'https://customer-assets.emergentagent.com/job_achab-bistro/artifacts/08ezpohe_image.png', caption: 'Signature Dishes' },
+    { url: 'https://customer-assets.emergentagent.com/job_achab-bistro/artifacts/qctwgfvt_image.png', caption: 'Dining Experience' }
   ];
 
   const testimonials = [
