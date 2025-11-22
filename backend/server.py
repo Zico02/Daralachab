@@ -37,6 +37,28 @@ class StatusCheck(BaseModel):
 class StatusCheckCreate(BaseModel):
     client_name: str
 
+class ReservationCreate(BaseModel):
+    name: str
+    phone: str
+    email: str | None = None
+    date: str
+    time: str
+    persons: int
+    message: str | None = None
+
+class Reservation(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    name: str
+    phone: str
+    email: str | None = None
+    date: str
+    time: str
+    persons: int
+    message: str | None = None
+    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
 async def root():
@@ -65,6 +87,33 @@ async def get_status_checks():
             check['timestamp'] = datetime.fromisoformat(check['timestamp'])
     
     return status_checks
+
+@api_router.post("/reservations", response_model=Reservation)
+async def create_reservation(input: ReservationCreate):
+    reservation_dict = input.model_dump()
+    reservation_obj = Reservation(**reservation_dict)
+    
+    # Convert to dict and serialize datetime to ISO string for MongoDB
+    doc = reservation_obj.model_dump()
+    doc['timestamp'] = doc['timestamp'].isoformat()
+    
+    _ = await db.reservations.insert_one(doc)
+    
+    # Log reservation (you can add email notification here)
+    logger.info(f"New reservation received: {reservation_obj.name} - {reservation_obj.phone} - {reservation_obj.date} {reservation_obj.time}")
+    
+    return reservation_obj
+
+@api_router.get("/reservations", response_model=List[Reservation])
+async def get_reservations():
+    reservations = await db.reservations.find({}, {"_id": 0}).to_list(1000)
+    
+    # Convert ISO string timestamps back to datetime objects
+    for reservation in reservations:
+        if isinstance(reservation.get('timestamp'), str):
+            reservation['timestamp'] = datetime.fromisoformat(reservation['timestamp'])
+    
+    return reservations
 
 # Include the router in the main app
 app.include_router(api_router)
