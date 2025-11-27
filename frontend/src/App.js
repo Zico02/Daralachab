@@ -8,6 +8,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { toast } from 'sonner';
 
 function App() {
+  const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [currentGalleryIndex, setCurrentGalleryIndex] = useState(0);
@@ -34,12 +35,15 @@ function App() {
     const { name, value } = e.target;
 
     if (name === 'date' && value) {
-      const selectedDate = new Date(`${value}T00:00:00`);
-      if (!Number.isNaN(selectedDate.getTime()) && selectedDate.getUTCDay() === 5) {
-        toast.error('Le restaurant est fermé le vendredi. Veuillez choisir un autre jour.');
-        e.target.value = '';
-        setFormData((prev) => ({ ...prev, date: '' }));
-        return;
+      const [year, month, day] = value.split('-').map((part) => Number(part));
+      if (year && month && day) {
+        const selectedDate = new Date(year, month - 1, day);
+        if (!Number.isNaN(selectedDate.getTime()) && selectedDate.getDay() === 5) {
+          toast.error('Le restaurant est fermé le vendredi. Veuillez choisir un autre jour.');
+          e.target.value = '';
+          setFormData((prev) => ({ ...prev, date: '' }));
+          return;
+        }
       }
     }
 
@@ -58,7 +62,7 @@ function App() {
 
     try {
       // Send reservation to backend API
-      const response = await fetch('http://localhost:8000/api/reservations', {
+      const response = await fetch(`${API_BASE_URL}/api/reservations`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -86,21 +90,12 @@ function App() {
           message: ''
         });
       } else {
-        throw new Error('Erreur lors de l\'envoi de la réservation');
+        const errorBody = await response.text();
+        throw new Error(errorBody || 'Erreur lors de l\'envoi de la réservation');
       }
     } catch (error) {
       console.error('Error submitting reservation:', error);
-      // Still show success message for better UX, but log the error
-      toast.success('Merci! Votre réservation a été envoyée avec succès.');
-      setFormData({
-        name: '',
-        phone: '',
-        email: '',
-        date: '',
-        time: '',
-        persons: '',
-        message: ''
-      });
+      toast.error('Une erreur est survenue. Merci de réessayer ou d\'appeler le restaurant.');
     }
   };
 
@@ -909,6 +904,9 @@ function App() {
 
           <div className="footer-bottom">
             <p>© {new Date().getFullYear()} Restaurant Dar Al Achab – Tous droits réservés.</p>
+            <p style={{ fontSize: '0.875rem', opacity: 0.7, marginTop: '0.5rem' }}>
+              <a href="/admin" style={{ color: 'inherit', textDecoration: 'none' }}>Admin</a>
+            </p>
           </div>
         </div>
       </footer>

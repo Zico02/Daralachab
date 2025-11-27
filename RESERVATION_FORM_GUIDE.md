@@ -52,25 +52,66 @@ The reservation form on the website allows customers to book a table at Dar Al A
   1. Accessing MongoDB directly
   2. Using the API endpoint: `GET http://localhost:8000/api/reservations`
 
-### Future Enhancements (Recommended)
-You can enhance the reservation system by:
+### Email Notifications (Now Implemented)
 
-1. **Email Notifications**:
-   - Send email to restaurant when a new reservation is made
-   - Send confirmation email to customer
-   - Add email service (e.g., SendGrid, AWS SES) in `backend/server.py`
+Email notifications are now automatically sent when a reservation is created:
 
-2. **SMS Notifications**:
-   - Send SMS to restaurant phone number
-   - Use services like Twilio
+1. **Restaurant Owner Email**: Sent to the email configured in `EMAIL_TO` environment variable
+2. **Customer Confirmation Email**: Optional confirmation email sent to the customer (if email is provided in the form)
 
-3. **Admin Dashboard**:
-   - Create a web interface to view and manage reservations
-   - Add features like: approve/reject, mark as confirmed, etc.
+**Configuration**:
+To enable email notifications, add the following to your `backend/.env` file:
+```env
+EMAIL_ENABLED=true
+EMAIL_FROM=noreply@daralachab.ma
+EMAIL_TO=owner@daralachab.ma
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USERNAME=your-email@gmail.com
+SMTP_PASSWORD=your-password
+```
 
-4. **Calendar Integration**:
-   - Integrate with Google Calendar
-   - Automatically create calendar events for reservations
+**Email Content**:
+- **Subject**: "Nouvelle Réservation – Dar Al Achab"
+- **Body includes**: Name, phone, email, date, time, number of persons, message
+
+**Note**: If email sending fails, the reservation is still saved successfully. Errors are logged but don't break the API.
+
+### SMS Notifications (Now Implemented)
+
+SMS notifications can be sent to the restaurant phone number when a reservation is created.
+
+**Configuration**:
+To enable SMS notifications, add the following to your `backend/.env` file:
+```env
+SMS_ENABLED=true
+SMS_ACCOUNT_SID=your-twilio-account-sid
+SMS_AUTH_TOKEN=your-twilio-auth-token
+SMS_FROM_NUMBER=+1234567890
+SMS_TO_NUMBER=+212612345678
+```
+
+**SMS Content**:
+"Nouvelle réservation: {date} {time} - {persons} pers - {name} ({phone})"
+
+**Note**: SMS notifications require a Twilio account. If SMS sending fails, the reservation is still saved successfully. Errors are logged but don't break the API.
+
+### Admin Dashboard (Now Implemented)
+
+An admin dashboard is now available at `/admin` to view all reservations.
+
+**Features**:
+- View all reservations in a table format
+- Filter by date (today, future, all)
+- Search by name, phone, or email
+- View statistics about reservations
+- Requires admin API key for access
+
+**Access**: Navigate to `http://localhost:3000/admin` (or your production URL + `/admin`)
+
+**Configuration**: Set `ADMIN_API_KEY` in `backend/.env` file. Use this key to log in to the admin dashboard.
+
+See `HANDOVER_GUIDE.md` for more details on configuring and using the admin dashboard.
 
 ## Testing the Reservation Form
 
